@@ -16,6 +16,7 @@
 package com.example.android.sunshine;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.sunshine.ForecastAdapter.ForecastAdapterOnClickHandler;
 import com.example.android.sunshine.data.SunshinePreferences;
@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
          * Using findViewById, we get a reference to our RecyclerView from xml. This allows us to
          * do things like set the adapter of the RecyclerView and toggle the visibility.
          */
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_forecast);
+        mRecyclerView = findViewById(R.id.recyclerview_forecast);
 
         /* This TextView is used to display errors and will be hidden if there are no errors */
-        mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
+        mErrorMessageDisplay = findViewById(R.id.tv_error_message_display);
 
         /*
          * LinearLayoutManager can support HORIZONTAL or VERTICAL orientations. The reverse layout
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
          * Please note: This so called "ProgressBar" isn't a bar by default. It is more of a
          * circle. We didn't make the rules (or the names of Views), we just follow them.
          */
-        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        mLoadingIndicator = findViewById(R.id.pb_loading_indicator);
 
         /* Once all of our views are setup, we can load the weather data. */
         loadWeatherData();
@@ -117,11 +117,11 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
     @Override
     public void onClick(String weatherForDay) {
         Context context = this;
-        // TODO (1) Create a new Activity called DetailActivity using Android Studio's wizard
-        // TODO (2) Change the root layout of activity_detail.xml to a FrameLayout and remove unnecessary xml attributes
-        // TODO (3) Remove the Toast and launch the DetailActivity using an explicit Intent
-        Toast.makeText(context, weatherForDay, Toast.LENGTH_SHORT)
-                .show();
+        // COMPLETED (1) Create a new Activity called DetailActivity using Android Studio's wizard
+        // COMPLETED (2) Change the root layout of activity_detail.xml to a FrameLayout and remove unnecessary xml attributes
+        // COMPLETED (3) Remove the Toast and launch the DetailActivity using an explicit Intent
+        Intent detailActivityIntent = new Intent(context, DetailActivity.class);
+        startActivity(detailActivityIntent);
     }
 
     /**
